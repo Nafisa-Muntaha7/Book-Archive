@@ -14,14 +14,30 @@
 </head>
 
 <body>
-    <h1 class="text-center my-4">Book Archive</h1>
-    <!-- Search Area -->
-    <div class="input-group mb-3 w-50 mx-auto">
-        <input id="search-field" type="text" class="form-control" placeholder="Search" aria-label="Recipient's username"
-            aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="button" id="button-search">Click</button>
-    </div>
 
+    <main>
+        <h1 class="text-center my-4">Book Archive</h1>
+        <!-- Search Area -->
+        <div class="input-group mb-3 w-50 mx-auto">
+            <input id="search-field" type="text" class="form-control" placeholder="Search"
+                aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button onclick="searchBook()" class="btn btn-outline-secondary" type="button"
+                id="button-search">Click</button>
+        </div>
+
+        <!-- Display Area -->
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="books-div">
+
+        </div>
+
+
+    </main>
+
+
+
+
+
+    <!-- JS Script -->
     <script src="script.js"></script>
 </body>
 
