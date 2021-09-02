@@ -7,7 +7,7 @@ const searchBook = () => {
     const searchInput = document.getElementById('search-field');
     const inputValue = searchInput.value;
     searchInput.value = '';
-    const url = `http://openlibrary.org/search.json?q=${inputValue}`
+    const url = `https://openlibrary.org/search.json?q=${inputValue}`
     fetch(url)
         .then(res => res.json())
         .then(data => displayBooks(data))
