@@ -1,5 +1,8 @@
+//---- Display none to total search results and error message section.
 document.getElementById('search-results').style.display = 'none';
+document.getElementById('total-results').style.display = 'none';
 
+//----Showing results when search for a book after clicking button
 const searchBook = () => {
     const searchInput = document.getElementById('search-field');
     const inputValue = searchInput.value;
@@ -11,28 +14,24 @@ const searchBook = () => {
 };
 
 const displayBooks = (books) => {
-
-    //console.log(books);
-
     const bookDetails = books.docs;
     const booksDiv = document.getElementById('books-div');
     booksDiv.textContent = '';
 
-    if (bookDetails.length == 0) {
+    //---- Show an error message if nothing related to the search is not found
+    if (bookDetails.length === 0) {
         const searchError = document.getElementById('search-results');
+        searchError.textContent = '';
         const div = document.createElement('div');
-        div.textContent = '';
         div.innerHTML = `<h6 class="text-center">Nothing is found. Please try again.</h6>`
-        //div.innerText = '';
         searchError.appendChild(div);
         document.getElementById('search-results').style.display = 'block';
+        document.getElementById('total-results').style.display = 'none';
     }
 
     else {
         bookDetails.forEach(book => {
-            //---------------
-            // console.log(book);
-
+            //----Displaying informations about books
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
@@ -50,29 +49,14 @@ const displayBooks = (books) => {
             booksDiv.appendChild(div);
         });
 
+        //----Show total number of search results as many of them are similiar
+        const totalResults = document.getElementById('total-results');
+        totalResults.textContent = '';
+        const resultsDiv = document.createElement('div');
+        resultsDiv.innerHTML = `<h5 class="text-center"> Total results found: ${bookDetails.numFound} </h5>`;
+        totalResults.appendChild(resultsDiv);
+
+        document.getElementById('total-results').style.display = 'block';
         document.getElementById('search-results').style.display = 'none';
     }
 };
-
-
-
-/*
-const resultNumbers = () => {
-
-    const searchInput = document.getElementById('search-field');
-    const inputValue = searchInput.value;
-    const url = `http://openlibrary.org/search.json?q=${inputValue}`
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displayResult(data))
-}
-
-const displayResult = (results) => {
-    console.log(results)
-    results.forEach(result => {
-        const resultId = document.getElementById('search-results');
-        resultId.innerHTML = `Total results found: ${result.numFound}`
-    })
-
-}
-*/
